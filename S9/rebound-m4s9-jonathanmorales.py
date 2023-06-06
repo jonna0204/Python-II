@@ -1,3 +1,5 @@
+import time
+
 def crear_archivo():
     try:
         archivo = open("informacion.dat","x") 
@@ -9,14 +11,11 @@ def crear_archivo():
 
 def escribir_archivo(texto):
     try:
-        with open("informacion,dat","r") as existente:
+        with open("informacion.dat","r") as existente:
             contenido_existente = existente.read()
         
-        with open("informacion.dat","w") as archivo:
-            nuevo = archivo.write(texto) + contenido_existente
-            archivo.close()
-            nuevo.close()
-            
+        with open("informacion.dat", "w") as archivo:
+            nuevo = archivo.write(texto + contenido_existente)
     except FileNotFoundError:
         print("No se encuentra el archivo.")
     except Exception as e:
@@ -34,11 +33,17 @@ def lectura_archivo():
         print("Se ha generado un error no previsto",type(error).__name__) 
 
 
-#crear_archivo()
+crear_archivo()
 escribir_archivo("Hola mundo\nEste es una nueva línea en el archivo\nagregando la segunda línea del archivo\nfinalizando la línea agregada")
-lectura_archivo()
+print("*****************************************************************")
 
-escribir_archivo("Datos de información en la línea 1")
-lectura_archivo()
 
+
+escribir_archivo("Datos de información en la línea 5\n")
+escribir_archivo("Datos de información en la línea 4\n")
+escribir_archivo("Datos de información en la línea 3\n")
+escribir_archivo("Datos de información en la línea 2\n")
+escribir_archivo("Datos de información en la línea 1\n")
+time.sleep(2)
+lectura_archivo()
 
